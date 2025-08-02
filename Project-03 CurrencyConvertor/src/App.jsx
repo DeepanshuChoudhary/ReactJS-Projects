@@ -14,38 +14,18 @@ function App() {
 
   const options = Object.keys(currencyInfo)
 
+
   const swap = () => {
-  const prevFrom = from;
-  const prevTo = to;
-  const prevAmount = amount;
-  const prevConvertedAmount = convertedAmount;
-
-  setFrom(prevTo);
-  setTo(prevFrom);
-  setAmount(prevConvertedAmount);
-  setConvertedAmount(prevAmount);
-}
-
-
-  // const swap = () => {
-  //   setFrom(to)
-  //   setTo(from)
-  //   setConvertedAmount(amount)
-  //   setAmount(convertedAmount)
-  // }
-  
-  const convert = () => {
-  if (currencyInfo && currencyInfo[to]) {
-    setConvertedAmount(amount * currencyInfo[to]);
-  } else {
-    setConvertedAmount(0); // Or some fallback
+    setFrom(to)
+    setTo(from)
+    setConvertedAmount(amount)
+    setAmount(convertedAmount)
   }
-};
 
 
-  // const convert = () => {
-  //   setConvertedAmount(amount * currencyInfo[to])
-  // }
+  const convert = () => {
+    setConvertedAmount(amount * currencyInfo[to])
+  }
 
   return (
     <div
@@ -67,7 +47,7 @@ function App() {
                             label="From"
                             amount={amount}
                             currencyOptions={options}
-                            onCurrencyChange={(currency) => setAmount(amount)}
+                            onCurrencyChange={(currency) => setAmount(currency)}
                             selectCurrency={from}
                             onAmountChange={(amount) => setAmount(amount)}
                         />
