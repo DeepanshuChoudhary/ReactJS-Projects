@@ -1,10 +1,16 @@
 import React, { StrictMode } from "react";
 import ReactDOM, { createRoot } from 'react-dom/client';
 import App from './App'
+import AuthContext from "./context/AuthContext";
+import TaskContext from "./context/TaskContext";
 
-
-createRoot(document.getElementById('root')).render (
+// localStorage.clear()
+createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <AuthContext>
+      <TaskContext>
+        <App />
+      </TaskContext>
+    </AuthContext>
   </StrictMode>
 )

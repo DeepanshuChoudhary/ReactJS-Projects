@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-const Login = () => {
+const Login = ({handleLogin}) => {
+
+    // console.log(handleLogin)
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -10,6 +12,7 @@ const Login = () => {
         console.log('Your form is submitted')
         // console.log('Your form is submitted ' +email+" "+password)
 
+        handleLogin(email, password)
         setEmail("")
         setPassword("")
     }
@@ -26,8 +29,8 @@ const Login = () => {
     }
 
     return (
-        <div className='flex items-center justify-center h-screen'>
-            <div className='border-2 border-emerald-600 p-20 rounded-xl'>
+        <div className='flex items-center justify-center h-screen bg-[#1c1c1c]'>
+            <div className='outline-none px-20 py-40 rounded-xl bg-[#242424]'>
                 <form className='flex flex-col items-center justify-center'>
                     <input type='email'
                         required
@@ -39,14 +42,14 @@ const Login = () => {
                         //     setEmail(e.target.value)
                         // }}
                         placeholder="Enter your email"
-                        className='border-2 border-emerald-600 rounded-full py-3 px-5 text-xl outline-none bg-transparent placeholder:text-gray-400'
+                        className='bg-[#1c1c1c] rounded-full py-3 px-5 text-xl outline-none placeholder:text-gray-400'
                     />
                     <input type='password' 
                         required
                         value={password}
                         onChange={handlePassword}
                         placeholder="Enter your password"
-                        className='border-2 border-emerald-600 rounded-full py-3 px-5 text-xl outline-none bg-transparent placeholder:text-gray-400 mt-3'
+                        className='bg-[#1c1c1c] rounded-full py-3 px-5 text-xl outline-none placeholder:text-gray-400 mt-3'
                     />
                     <button type='submit'
                         onClick={handleSubmit}
