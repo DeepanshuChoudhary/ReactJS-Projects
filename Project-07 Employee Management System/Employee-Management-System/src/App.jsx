@@ -1,39 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './index.css'
-import Login from './components/Auth/Login'
+import Login from "./components/Auth/Login";
 import EmployeeDashboard from "./components/Dashboard/EmployeeDashboard";
 import AdminDashboard from "./components/Dashboard/AdminDashboard";
 import { getLocalStorage, setLocalStorage } from "./Utils/LocalStorage";
+import { AuthContext } from "./context/AuthProvider";
 
 const App = () => {
 
-//   useEffect(() => {
-//     // setLocalStorage()
-//     getLocalStorage()
-//   },)
+  // useEffect(() => {
+  //   // setLocalStorage()
+  //   // getLocalStorage()
+  // })
 
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
+
+  const AuthData = useContext(AuthContext);
 
   const handleLogin = (email, password) => {
-    if(email == 'admin@me.com' && password == '123') {
-      // console.log("This is Admin")
+    if(email == 'admin@admin.com' &&  password == '123') {
       setUser('admin')
-    }else if(email == 'user@me.com' && password == '123') {
-      // console.log("This is User")
-      setUser('employee ')
-    } else {
-      alert('Invalid Credentials')
+    } 
+    
+    // else if(email == 'employees@example.com' && password == '123') {
+    //   setUser('employees')
+    else if(AuthData && AuthData.employees.find((e) => 
+    email == e.email && password == e.password)) {
+      setUser('employees')
+    }
+
+    else {
+      alert("Invalid Credentials");
     }
   }
 
-  // handleLogin('user@me.com', 123);
 
   return (
     <>
       {!user ? <Login handleLogin={handleLogin}/> : ''}
-      {user == 'admin' ? <AdminDashboard /> : <EmployeeDashboard />}
-      {/* <EmployeeDashboard /> */}
-      {/* <AdminDashboard /> */}
+      {user == 'admin' ? (<AdminDashboard />) : (user == 'employees' ? <EmployeeDashboard /> : null) }
+      {/* {user == 'admin' ? <AdminDashboard /> : <EmployeeDashboard />} */}
     </>
   )
 }

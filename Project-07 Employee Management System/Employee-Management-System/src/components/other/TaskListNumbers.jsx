@@ -1,30 +1,31 @@
-import React from "react";
+import React from 'react'
 
-const TaskListNumbers = () => {
-
+function TaskListNumbers() {
     return (
-        <div id='tasklist' className='flex mt-10 justify-between gap-5 screen flex-nowrap overflow-x-auto'>
-            <div className='px-9 py-6 rounded-xl w-[45%] bg-red-400'> 
-                <h1 className='text-3xl font-semibold'>0</h1>
-                <h3 classname='text-xl font-medium'>New Task</h3>
+        
+        <div className='flex screen justify-between gap-5 mt-10'>
+            
+            <div className='px-9 py-6 rounded-xl bg-red-400 w-[45%]'>
+                <h1 className='text-2xl font-semibold'>0</h1>
+                <h3 className='text-xl font-medium'>New Task</h3>
             </div>
             
-            <div className='px-9 py-6 rounded-xl w-[45%] bg-blue-400'> 
-                <h1 className='text-3xl font-semibold'>0</h1>
-                <h3 classname='text-xl font-medium'>New Task</h3>
+            <div className='px-9 py-6 rounded-xl bg-blue-600 w-[45%]'>
+                <h1 className='text-2xl font-semibold'>0</h1>
+                <h3 className='text-xl font-medium'>New Task</h3>
             </div>
             
-            <div className='px-9 py-6 rounded-xl w-[45%] bg-green-400'> 
-                <h1 className='text-3xl font-semibold'>0</h1>
-                <h3 classname='text-xl font-medium'>New Task</h3>
+            <div className='px-9 py-6 rounded-xl bg-green-600 w-[45%]'>
+                <h1 className='text-2xl font-semibold'>0</h1>
+                <h3 className='text-xl font-medium'>New Task</h3>
             </div>
             
-            <div className='px-9 py-6 rounded-xl w-[45%] bg-yellow-400'> 
-                <h1 className='text-3xl font-semibold'>0</h1>
-                <h3 classname='text-xl font-medium'>New Task</h3>
+            <div className='px-9 py-6 rounded-xl bg-yellow-600 w-[45%]'>
+                <h1 className='text-2xl font-semibold'>0</h1>
+                <h3 className='text-xl font-medium'>New Task</h3>
             </div>
         </div>
     )
 }
 
-export default TaskListNumbers;
+export default TaskListNumbers

@@ -198,6 +198,11 @@ const admin = [
         "id": 2,
         "email": "admin@admin.com",
         "password": "123"
+    },
+    {
+        "id": 3,
+        "email": "deepanshu@admin.com",
+        "password": "123"
     }
 ]
 
@@ -207,11 +212,24 @@ export const setLocalStorage = () => {
 }
 
 export const getLocalStorage = () => {
-    // const data = localStorage.getItem('employees')
     const employees = JSON.parse(localStorage.getItem('employees'))
     const admin = JSON.parse(localStorage.getItem('admin'))
 
-    // console.log(data);
-    // console.log(JSON.parse(data));
-    console.log(employees, admin);
-}
+    return {employees, admin}
+} 
+
+
+// export const setLocalStorage = () => {
+//     localStorage.setItem('employees', JSON.stringify(employees));
+//     localStorage.setItem('admin', JSON.stringify(admin));
+// }
+
+// export const getLocalStorage = () => {
+//     // const data = localStorage.getItem('employees')
+//     const employees = JSON.parse(localStorage.getItem('employees'))
+//     const admin = JSON.parse(localStorage.getItem('admin'))
+
+//     // console.log(data);
+//     // console.log(JSON.parse(data));
+//     console.log(employees, admin);
+// }
