@@ -14,34 +14,41 @@ const App = () => {
   // })
 
   const [user, setUser] = useState(null);
+  const [loggedInUserData, setLoggedInUserData] = useState(null);
 
   const AuthData = useContext(AuthContext);
 
-  useEffect(() => {
-    if(AuthData) {
-      const loggedInUser = localStorage.getItem("loggedInUser");
-      if(loggedInUser) {
-        setUser(loggedInUser.role);
-      }
-    }
-  }, [AuthData])
+  // Temp:::
+  // useEffect(() => {
+  //   if(AuthData) {
+  //     const loggedInUser = localStorage.getItem("loggedInUser");
+  //     if(loggedInUser) {
+  //       setUser(loggedInUser.role);
+  //     }
+  //   }
+  // }, [AuthData])
 
   const handleLogin = (email, password) => {
     // if(email == 'admin@admin.com' &&  password == '123') {
     //   setUser('admin')
     // } 
-    if(AuthData && AuthData.admin.find((e) => 
-    email == e.email && password == e.password)) {
+    if (AuthData && AuthData.admin.find((e) =>
+      email == e.email && password == e.password)) {
       setUser('admin');
-      localStorage.setItem('loggedInUser', JSON.stringify({role:'admin'}))
+      localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin' }))
     }
-    
+
     // else if(email == 'employees@example.com' && password == '123') {
     //   setUser('employees')
-    else if(AuthData && AuthData.employees.find((e) => 
-    email == e.email && password == e.password)) {
-      setUser('employees')
-      localStorage.setItem('loggedInUser', JSON.stringify({role:'employees'}))
+    else if (AuthData) {
+
+      const employee = AuthData.employees.find((e) => email == e.email && password == e.password)
+
+      if (employee) {
+        setUser('employees')
+        localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employees' }))
+      }
+
     }
 
     else {
@@ -52,8 +59,8 @@ const App = () => {
 
   return (
     <>
-      {!user ? <Login handleLogin={handleLogin}/> : ''}
-      {user == 'admin' ? (<AdminDashboard />) : (user == 'employees' ? <EmployeeDashboard /> : '') }
+      {!user ? <Login handleLogin={handleLogin} /> : ''}
+      {user == 'admin' ? (<AdminDashboard />) : (user == 'employees' ? <EmployeeDashboard /> : '')}
       {/* {user == 'admin' ? <AdminDashboard /> : <EmployeeDashboard />} */}
     </>
   )
