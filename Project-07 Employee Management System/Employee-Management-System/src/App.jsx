@@ -18,9 +18,13 @@ const App = () => {
   const AuthData = useContext(AuthContext);
 
   const handleLogin = (email, password) => {
-    if(email == 'admin@admin.com' &&  password == '123') {
-      setUser('admin')
-    } 
+    // if(email == 'admin@admin.com' &&  password == '123') {
+    //   setUser('admin')
+    // } 
+    if(AuthData && AuthData.admin.find((e) => 
+    email == e.email && password == e.password)) {
+      setUser('admin');
+    }
     
     // else if(email == 'employees@example.com' && password == '123') {
     //   setUser('employees')
