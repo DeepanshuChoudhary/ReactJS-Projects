@@ -5,7 +5,7 @@ const employees = [
         firstname: "Aarav",
         email: "employee1@example.com",
         password: "123",
-        taskCount: { active: 2, new_task: 1, completed: 1, failed: 1 },
+        taskCount: { active: 2, new_task: 3, completed: 1, failed: 1 },
         tasks: [
             {
                 active: true,
