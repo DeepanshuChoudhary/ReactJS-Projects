@@ -29,26 +29,60 @@ const App = () => {
   // }, [AuthData])
 
   const handleLogin = (email, password) => {
-    // if(email == 'admin@admin.com' &&  password == '123') {
-    //   setUser('admin')
-    // } 
-    if (AuthData && AuthData.admin.find((e) =>
-      email == e.email && password == e.password)) {
-      setUser('admin');
-      localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin' }))
-    }
+    // // if(email == 'admin@admin.com' &&  password == '123') {
+    // //   setUser('admin')
+    // // } 
+    // // if (AuthData && AuthData.admin.find((e) =>
+    // //   email == e.email && password == e.password)) {
+    // //   setUser('admin');
+    // //   localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin' }))
+    // // }
 
-    // else if(email == 'employees@example.com' && password == '123') {
-    //   setUser('employees')
-    else if (AuthData) {
+    //       if(AuthData) {
+    //         const admin = AuthData.admin.find((e) => 
+    //           email == e.email && password == e.password);
 
-      const employee = AuthData.employees.find((e) => email == e.email && password == e.password)
+    //         if(admin) {
+    //           setUser('admin')
+    //           setLoggedInUserData(admin);
+    //           localStorage.setItem('loggedInUser', JSON.stringify({role:'admin'}))
+    //         }
+    //       }
 
-      if (employee) {
-        setUser('employees')
-        localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employees' }))
+    // // else if(email == 'employees@example.com' && password == '123') {
+    // //   setUser('employees')
+    // else if (AuthData) {
+
+    //   const employee = AuthData.employees.find((e) => email == e.email && password == e.password)
+
+    //   if (employee) {
+    //     setUser('employees')
+    //     setLoggedInUserData(employee);
+    //     localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employees' }))
+    //   }
+
+    // }
+
+    if(AuthData) {
+      
+      const admin = AuthData.admin.find((e) => 
+        email == e.email && password == e.password);
+
+      if(admin) {
+        setUser('admin')
+        setLoggedInUserData(admin)
+        localStorage.setItem('loggedInUser', JSON.stringify({role: 'admin'}));
+        return;
       }
+      
+      const employees = AuthData.employees.find((e) => 
+        email == e.email && password == e.password);
 
+      if(employees) {
+        setUser('employees')
+        setLoggedInUserData(employees) 
+        localStorage.setItem('loggedInUser', JSON.stringify({role: 'employees'}))
+      }
     }
 
     else {
@@ -60,7 +94,7 @@ const App = () => {
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ''}
-      {user == 'admin' ? (<AdminDashboard data={loggedInUserData}/>) : (user == 'employees' ? <EmployeeDashboard /> : '')}
+      {user == 'admin' ? (<AdminDashboard data={loggedInUserData}/>) : (user == 'employees' ? <EmployeeDashboard data={loggedInUserData}/> : '')}
       {/* {user == 'admin' ? <AdminDashboard /> : <EmployeeDashboard />} */}
     </>
   )
