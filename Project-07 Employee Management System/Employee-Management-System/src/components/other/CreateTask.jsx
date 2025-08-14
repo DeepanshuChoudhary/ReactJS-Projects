@@ -23,10 +23,13 @@ const CreateTask = () => {
 
             if(assignTo == e.firstname) {
                 e.tasks.push(newTask)
-
+                e.taskCount.new_task = e.taskCount.new_task+1;
                 console.log(e)
             }
         })
+
+        console.log(data);
+        localStorage.setItem('employee', JSON.stringify(data))
 
         setTaskTitle('');
         setTaskDescription('');
