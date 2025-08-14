@@ -3,13 +3,30 @@ import React, { useState } from 'react'
 const CreateTask = () => {
 
     const [taskTitle, setTaskTitle] = useState('');
-    const [taskDescription, setTaskDescription] = useState('');
     const [taskDate, setTaskDate] = useState('');
     const [assignTo, setAssignTo] = useState('');
     const [category, setCategory] = useState('');
+    const [taskDescription, setTaskDescription] = useState('');
+
+    const [newTask, setNewTask] = useState([]);
 
     const submitHandler = (e) => {
         e.preventDefault();
+
+        // console.log(taskTitle, taskDate, assignTo, category, taskDescription);
+
+        setNewTask({taskTitle, taskDate, category, taskDescription, active:false, new_task:true, completed:false, failed:false});
+
+        const data = JSON.parse(localStorage.getItem('employees'))
+
+        data.forEach((e) => {
+
+            if(assignTo == e.firstname) {
+                e.tasks.push(newTask)
+
+                console.log(e)
+            }
+        })
 
         setTaskTitle('');
         setTaskDescription('');

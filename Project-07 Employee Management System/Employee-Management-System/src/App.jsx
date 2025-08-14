@@ -8,11 +8,6 @@ import { AuthContext } from "./context/AuthProvider";
 
 const App = () => {
 
-  // useEffect(() => {
-  //   // setLocalStorage()
-  //   // getLocalStorage()
-  // })
-
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
 
@@ -63,7 +58,7 @@ const App = () => {
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ''}
-      {user == 'admin' ? (<AdminDashboard data={loggedInUserData}/>) : (user == 'employees' ? <EmployeeDashboard data={loggedInUserData}/> : '')}
+      {user == 'admin' ? (<AdminDashboard changeUser={setUser} data={loggedInUserData}/>) : (user == 'employees' ? <EmployeeDashboard changeUser={setUser} data={loggedInUserData}/> : '')}
     </>
   )
 }
