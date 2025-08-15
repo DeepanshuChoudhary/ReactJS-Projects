@@ -11,7 +11,7 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [loggedInUserData, setLoggedInUserData] = useState(null);
 
-  const AuthData = useContext(AuthContext);
+  const [userData, setUserData] = useContext(AuthContext);
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem('loggedInUser');
@@ -26,9 +26,9 @@ const App = () => {
 
   const handleLogin = (email, password) => {
 
-    if(AuthData) {
+    if(userData) {
       
-      const admin = AuthData.admin.find((e) => 
+      const admin = userData.admin.find((e) => 
         email == e.email && password == e.password);
 
       if(admin) {
@@ -38,7 +38,7 @@ const App = () => {
         return;
       }
       
-      const employees = AuthData.employees.find((e) => 
+      const employees = userData.employees.find((e) => 
         email == e.email && password == e.password);
 
       if(employees) {
