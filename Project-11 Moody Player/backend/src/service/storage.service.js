@@ -1,4 +1,5 @@
-var ImageKit = require("imagekit");
+const ImageKit = require("imagekit");
+const mongoose = require("mongoose");
 
 var imagekit = new ImageKit({
     publicKey : process.env.IMAGEKIT_PUBLIC_KEY,
@@ -11,7 +12,9 @@ const uploadFile = (file) => {
     return new Promise((resolve, reject) => {
         imagekit.upload({
             file:file.buffer,
-            fileName: 'Shubh - Balenci (Official Music Video) [nt5tXl9Vtug].mp3'
+            // fileName: 'Shubh - Balenci (Official Music Video) [nt5tXl9Vtug].mp3',
+            fileName: (new mongoose.Types.ObjectId()).toString(), 
+            folder:'Backend-Testing' // create folder
         }, (error,result) => {
 
             if(error) {
