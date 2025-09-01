@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../components/MoodSongs.css'
 
 const MoodSongs = ({ Songs }) => {
+
+    const [isPlaying, setIsPlaying] = useState(null);
+
+    const handlePlayPause = (index) => {
+        if(isPlaying === index) {
+            setIsPlaying(null);
+        }
+        else {
+            setIsPlaying(index)
+        }
+    }
+
     return (
         <div className='mood-songs'>
             <h2>Recommended Songs</h2>
@@ -12,8 +24,18 @@ const MoodSongs = ({ Songs }) => {
                         <h3>{song.artist}</h3>
                     </div>
                     <div className='play-pause-button'>
-                        <i className="ri-pause-large-line"></i>
-                        <i className="ri-play-circle-fill"></i>
+                    {
+                        isPlaying === index && 
+                        <audio 
+                            // src={song.audio} style={{ display:'none' }}
+                            src={song.audio} style={{ display:'none' }}
+                            autoPlay={isPlaying === index}
+                        ></audio>
+                    }
+                        <button onClick={() => handlePlayPause(index)}>
+                            {isPlaying === index ? <i className="ri-pause-large-line"></i> : <i className="ri-play-circle-fill"></i>}
+                        </button>
+
                     </div>
                 </div>
             })}
